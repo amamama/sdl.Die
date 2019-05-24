@@ -1759,18 +1759,21 @@ public class Teapot implements Obj {
         // bottom
         //gl.glNormal3f(0, -1, 0);
         //gl.glDrawArrays(GL10.GL_TRIANGLE_STRIP, 0, VERTICES.length / 3);
+        int o = 0, i1 = 1, i2 = 2;
         for (int i = 0; i < VERTICES.length / 3 - 5; i += 6) {
-            float v1x = VERTICES[3 * (i + 1) + 0] - VERTICES[3 * i + 0],
-                    v1y = VERTICES[3 * (i + 1) + 1] - VERTICES[3 * i + 1],
-                    v1z = VERTICES[3 * (i + 1) + 2] - VERTICES[3 * i + 2],
-                    v2x = VERTICES[3 * (i + 2) + 0] - VERTICES[3 * i + 0],
-                    v2y = VERTICES[3 * (i + 2) + 1] - VERTICES[3 * i + 1],
-                    v2z = VERTICES[3 * (i + 2) + 2] - VERTICES[3 * i + 2];
+            float v1x = VERTICES[3 * (i + i1) + 0] - VERTICES[3 * (i + o) + 0],
+                    v1y = VERTICES[3 * (i + i1) + 1] - VERTICES[3 * (i + o) + 1],
+                    v1z = VERTICES[3 * (i + i1) + 2] - VERTICES[3 * (i + o) + 2],
+                    v2x = VERTICES[3 * (i + i2) + 0] - VERTICES[3 * (i + o) + 0],
+                    v2y = VERTICES[3 * (i + i2) + 1] - VERTICES[3 * (i + o) + 1],
+                    v2z = VERTICES[3 * (i + i2) + 2] - VERTICES[3 * (i + o) + 2];
             float nx = v1y * v2z - v1z * v2y,
                     ny = v1z * v2x - v1x * v2z,
                     nz = v1x * v2y - v1y * v2x;
             float r = (float) Math.sqrt(nx * nx + ny * ny + nz * nz);
+            float col[] = {nx / r, ny / r, nz / r, 1.0f};
             gl.glNormal3f(nx / r, ny / r, nz / r);
+            gl.glMaterialfv(GL10.GL_FRONT_AND_BACK, GL10.GL_AMBIENT_AND_DIFFUSE, col, 0);
             gl.glDrawArrays(GL10.GL_TRIANGLES, i, 6);
         }
     }
