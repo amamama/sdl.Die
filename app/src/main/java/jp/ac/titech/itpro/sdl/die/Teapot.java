@@ -1759,7 +1759,7 @@ public class Teapot implements Obj {
         // bottom
         //gl.glNormal3f(0, -1, 0);
         //gl.glDrawArrays(GL10.GL_TRIANGLE_STRIP, 0, VERTICES.length / 3);
-        for (int i = 0; i < VERTICES.length / 3 - 2; i++) {
+        for (int i = 0; i < VERTICES.length / 3 - 5; i += 6) {
             float v1x = VERTICES[3 * (i + 1) + 0] - VERTICES[3 * i + 0],
                     v1y = VERTICES[3 * (i + 1) + 1] - VERTICES[3 * i + 1],
                     v1z = VERTICES[3 * (i + 1) + 2] - VERTICES[3 * i + 2],
@@ -1771,7 +1771,7 @@ public class Teapot implements Obj {
                     nz = v1x * v2y - v1y * v2x;
             float r = (float) Math.sqrt(nx * nx + ny * ny + nz * nz);
             gl.glNormal3f(nx / r, ny / r, nz / r);
-            gl.glDrawArrays(GL10.GL_TRIANGLES, i, 3);
+            gl.glDrawArrays(GL10.GL_TRIANGLES, i, 6);
         }
     }
 }
