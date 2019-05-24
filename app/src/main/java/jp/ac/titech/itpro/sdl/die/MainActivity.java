@@ -1,8 +1,8 @@
 package jp.ac.titech.itpro.sdl.die;
 
 import android.opengl.GLSurfaceView;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
 
     private Cube cube;
     private Pyramid pyramid;
+    private Teapot teapot;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
         renderer = new SimpleRenderer();
         cube = new Cube();
         pyramid = new Pyramid();
+        teapot = new Teapot();
         renderer.setObj(cube);
         glView.setRenderer(renderer);
     }
@@ -72,6 +74,10 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
         case R.id.menu_pyramid:
             renderer.setObj(pyramid);
             break;
+            case R.id.menu_teapot:
+                renderer.setObj(teapot);
+                break;
+
         }
         return true;
     }
